@@ -1,0 +1,612 @@
+/* -------------------------------------- */
+/* 1. Reset and Base Styles */
+/* -------------------------------------- */
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f9fafb;
+    /* gray-50 equivalent */
+    color: #1f2937;
+    /* gray-900 equivalent */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+/* -------------------------------------- */
+/* 2. Layouts */
+/* -------------------------------------- */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 256px;
+    /* Space for sidebar (64 units * 4px = 256px) */
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar-wrapper {
+        display: none;
+    }
+}
+
+.page-container {
+    max-width: 1280px;
+    /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 24px;
+}
+
+/* -------------------------------------- */
+/* 3. General Utilities and Cards */
+/* -------------------------------------- */
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.rounded-xl {
+    border-radius: 12px;
+}
+
+.rounded-2xl {
+    border-radius: 16px;
+}
+
+.rounded-3xl {
+    border-radius: 24px;
+}
+
+.button-primary {
+    background-color: #2563eb;
+    /* blue-600 */
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background-color: #1d4ed8;
+    /* blue-700 */
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.4);
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.space-x-4>*+* {
+    margin-left: 16px;
+}
+
+.p-6 {
+    padding: 24px;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}
+
+/* -------------------------------------- */
+/* 4. Color Classes */
+/* -------------------------------------- */
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.bg-blue-600 {
+    background-color: #2563eb;
+}
+
+.border-blue-500 {
+    border-color: #3b82f6;
+}
+
+.bg-blue-50 {
+    background-color: #eff6ff;
+}
+
+.text-green-600 {
+    color: #059669;
+}
+
+.bg-green-500 {
+    background-color: #10b981;
+}
+
+.border-green-500 {
+    border-color: #10b981;
+}
+
+.bg-green-100 {
+    background-color: #d1fae5;
+}
+
+.text-green-700 {
+    color: #047857;
+}
+
+.text-green-800 {
+    color: #065f46;
+}
+
+.text-red-600 {
+    color: #dc2626;
+}
+
+.bg-red-500 {
+    background-color: #ef4444;
+}
+
+.border-red-500 {
+    border-color: #ef4444;
+}
+
+.bg-red-100 {
+    background-color: #fee2e2;
+}
+
+.text-red-700 {
+    color: #b91c1c;
+}
+
+.text-yellow-600 {
+    color: #ca8a04;
+}
+
+.bg-yellow-500 {
+    background-color: #f59e0b;
+}
+
+.bg-yellow-100 {
+    background-color: #fef3c7;
+}
+
+.text-yellow-700 {
+    color: #b45309;
+}
+
+/* -------------------------------------- */
+/* 5. Specific Component Styles */
+/* -------------------------------------- */
+
+/* Sidebar */
+.sidebar-wrapper {
+    width: 256px;
+    flex-shrink: 0;
+    background-color: #1f2937;
+    /* gray-900 */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 16px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.sidebar-title {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    padding: 0 16px;
+}
+
+.sidebar-nav button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+    border: none;
+    cursor: pointer;
+    background: none;
+    text-align: left;
+    color: #d1d5db;
+    /* gray-300 */
+}
+
+.sidebar-nav button:hover {
+    background-color: #374151;
+    /* gray-700 */
+    color: white;
+}
+
+.sidebar-nav button.active {
+    background-color: #2563eb;
+    /* blue-600 */
+    color: white;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-nav .icon {
+    margin-right: 12px;
+}
+
+/* Header */
+.header {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 8px 0;
+}
+
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Login Page */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: linear-gradient(135deg, #3b82f6, #4f46e5);
+    /* blue-500 to indigo-600 */
+}
+
+.login-card {
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 512px;
+    padding: 40px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.01);
+}
+
+/* Card Styling */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    border: 1px solid #f3f4f6;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-l-border {
+    border-left: 4px solid;
+}
+
+.card-l-border.blue {
+    border-left-color: #3b82f6;
+}
+
+.card-l-border.green {
+    border-left-color: #10b981;
+}
+
+.card-l-border.purple {
+    border-left-color: #8b5cf6;
+}
+
+.card-l-border.yellow {
+    border-left-color: #f59e0b;
+}
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 24px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f9fafb;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.data-table tr:hover {
+    background-color: #eff6ff;
+}
+
+.table-status {
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-student {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.status-faculty {
+    background-color: #ede9fe;
+    color: #6d28d9;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    height: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 9999px;
+}
+
+/* Grid */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Responsive Grid Adjustments */
+@media (min-width: 640px) {
+    .sm-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sm-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lg-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .lg-grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .xl-grid-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+/* Utility classes for demonstration */
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.text-gray-900 {
+    color: #1f2937;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-white {
+    color: white;
+}
+
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+.mb-6 {
+    margin-bottom: 24px;
+}
+
+.mb-8 {
+    margin-bottom: 32px;
+}
+
+.mt-2 {
+    margin-top: 8px;
+}
+
+.p-4 {
+    padding: 16px;
+}
+
+.space-y-4>*+* {
+    margin-top: 16px;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.mr-2 {
+    margin-right: 8px;
+}
+
+.ml-2 {
+    margin-left: 8px;
+}
+
+.px-4 {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.py-2 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.py-3 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Specific style to keep the layout clean */
+.log-item-start {
+    border-left: 4px solid #10b981;
+}
+
+.log-item-alert {
+    border-left: 4px solid #f59e0b;
+}
+
+.log-item-error {
+    border-left: 4px solid #ef4444;
+}
+
+.log-item-default {
+    border-left: 4px solid #d1d5db;
+}
